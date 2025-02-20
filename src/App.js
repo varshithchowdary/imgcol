@@ -33,6 +33,15 @@ function App() {
     }
   };
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = resultImage;
+    link.download = 'result_image.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="app-container">
       <nav className="navbar">
@@ -84,7 +93,10 @@ function App() {
             )}
           </div>
           {resultImage && (
-            <button className="delete-button" onClick={() => setResultImage(null)}>Delete Result</button>
+            <div className="result-actions">
+              <button className="download-button" onClick={handleDownload}>Download</button>
+              <button className="delete-button" onClick={() => setResultImage(null)}>Delete</button>
+            </div>
           )}
         </div>
       </div>
